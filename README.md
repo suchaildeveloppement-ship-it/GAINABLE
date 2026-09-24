@@ -2,10 +2,10 @@
 
 Application React (Vite + Tailwind) prête à déployer sur Vercel.
 
-## Structure
+## Structure exacte à respecter sur GitHub
 
 ```
-gainable-configurator/
+(racine du dépôt)
 ├── package.json
 ├── vite.config.js
 ├── tailwind.config.js
@@ -18,49 +18,40 @@ gainable-configurator/
     └── index.css
 ```
 
-## Tester en local (optionnel, avant de déployer)
+**Important** : les fichiers `main.jsx`, `App.jsx` et `index.css` doivent être dans un dossier `src/`, pas à la racine — c'est l'erreur qui a bloqué le premier déploiement.
 
-Nécessite [Node.js](https://nodejs.org/) installé (version 18 ou plus récente).
+## Mettre à jour ton dépôt GitHub existant (le plus simple)
 
-```bash
-npm install
-npm run dev
-```
+Sur la page de ton dépôt `GAINABLE` sur github.com :
 
-Puis ouvrir l'adresse affichée dans le terminal (en général `http://localhost:5173`).
+1. Clique sur **"Add file" → "Upload files"**
+2. Glisse-dépose TOUS les fichiers de ce zip (dézippé), en conservant la structure : les 3 fichiers du dossier `src/` doivent être déposés en entrant d'abord dans le dossier `src/` du dépôt (ou glisse le dossier `src` entier si ton navigateur le permet)
+3. En bas, clique **"Commit changes"**
 
-## Déployer sur Vercel
+Vercel redéploiera automatiquement après ce commit.
 
-### Option 1 — Via GitHub (recommandé)
+## Déployer depuis zéro (si nouveau dépôt)
 
-1. Crée un nouveau dépôt sur [GitHub](https://github.com/new)
-2. Dans ce dossier, exécute :
-   ```bash
-   git init
-   git add .
-   git commit -m "Configurateur gainable"
-   git branch -M main
-   git remote add origin https://github.com/TON-COMPTE/TON-REPO.git
-   git push -u origin main
-   ```
-3. Va sur [vercel.com](https://vercel.com), clique **"Add New Project"**
-4. Importe le dépôt GitHub que tu viens de créer
-5. Vercel détecte automatiquement Vite (grâce à `vercel.json`) — laisse les réglages par défaut
-6. Clique **"Deploy"**
+### Option 1 — Via GitHub
+1. Crée un nouveau dépôt sur [github.com/new](https://github.com/new)
+2. Upload tous les fichiers de ce zip en conservant la structure ci-dessus
+3. Sur [vercel.com](https://vercel.com) → **"Add New Project"** → importe le dépôt
+4. Vercel détecte Vite automatiquement → **"Deploy"**
 
-Ton site sera en ligne en 1-2 minutes, avec une URL du type `https://ton-projet.vercel.app`.
-
-### Option 2 — Via la CLI Vercel (sans GitHub)
-
+### Option 2 — Via la CLI Vercel (terminal, sans GitHub)
 ```bash
 npm install -g vercel
 vercel login
 vercel --prod
 ```
 
-Suis les instructions à l'écran (choisir le dossier courant, accepter les réglages par défaut détectés).
+## Tester en local (optionnel)
+
+```bash
+npm install
+npm run dev
+```
 
 ## Points d'attention pour ton développeur
 
-- Le bouton **"Télécharger le PDF"** dépend de deux librairies chargées depuis un CDN (`html2canvas-pro` et `jsPDF`) — voir le fichier `brief-developpeur-export-pdf.md` fourni séparément pour le détail des recommandations (notamment : passer ces librairies en dépendances npm plutôt qu'en CDN, pour plus de fiabilité en production).
-- Une fois déployé sur Vercel (donc **hors de l'iframe sandboxé de Claude**), les fonctions natives du navigateur (impression, téléchargement, pop-up) devraient fonctionner normalement sans les blocages rencontrés pendant le prototypage.
+Voir `brief-developpeur-export-pdf.md` (fourni séparément) pour le détail sur l'impression et l'envoi par email, qui nécessitent d'être hors du sandbox Claude pour fonctionner pleinement.
