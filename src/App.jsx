@@ -2439,10 +2439,10 @@ export default function GainableConfigurator() {
         </div>
       </div>
 
-      <div className="px-6 pt-2 pb-1">
+      <div className="px-6 pt-2 pb-1 no-print">
         <div className="text-lg font-semibold" style={{ color: PALETTE.ink }}>Accessoires</div>
       </div>
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-6 no-print">
         {ACCESSORY_GROUPS.map((group) => {
           const hasQty = true; // quantité +/- disponible pour tous les produits
           return (
